@@ -9,3 +9,48 @@ NOTE:
 ------
 PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+.brand-sidebar {
+    background: inherit;
+}
+
+.brand-sidebar .brand-logo {
+    color: white;
+}
+
+.sidenav {
+    font-family: 'Muli', sans-serif;
+}
+
+.sidenav li a.active {
+    color: white;
+}
+
+.sidenav li>a>svg {
+    margin: 0 20px 0 0;
+    width: 22px !important;
+    color: rgba(0,0,0,.54);
+    height: 18px;
+}
+
+.sidenav li a.active i, .sidenav li a.active svg {
+    color: #fff;
+}
+
+.brand-sidebar span.logo-text {
+    font-family: Muli, sans-serif;
+}
+
+.userMenu li {
+    padding: 14px 24px;
+    font-size: 16px;
+    line-height: 22px;
+    display: block;
+    color: #757575!important;
+}
+
+.userMenu li svg {
+    width: 14px !important;
+}

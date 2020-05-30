@@ -5,6 +5,7 @@ import Header from "./modules/Header";
 import Menu from "./modules/Menu";
 import Footer from "./modules/Footer";
 import Main from "./modules/Main";
+import {BrowserRouter} from "react-router-dom";
 
 class App extends React.Component {
     constructor(props) {
@@ -30,15 +31,18 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Header
-                    isGoogleLogin={this.state.isGoogleLogin}
-                    onLogin={(response) => this.responseGoogle(response)}
-                    onLogout={(response) => this.googleHasLogout(response)}
-                    avatar={this.state.avatar}
-                />
-                <Menu/>
-                <Main/>
-                <Footer/>
+                <BrowserRouter>
+                    <Header
+                        isGoogleLogin={this.state.isGoogleLogin}
+                        onLogin={(response) => this.responseGoogle(response)}
+                        onLogout={(response) => this.googleHasLogout(response)}
+                        avatar={this.state.avatar}
+                        user={this.state.user}
+                    />
+                    <Menu/>
+                    <Main/>
+                    <Footer/>
+                </BrowserRouter>
             </div>
         );
     }
