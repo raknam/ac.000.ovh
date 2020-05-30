@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom"
 import HomePage from "../pages/Home";
 import BugsPage from "../pages/Bugs";
+import FishesPage from "../pages/Fishes";
 
 export const ACNHAPI_BASEURL="https://acnhapi.com/v1a";
 
@@ -19,6 +20,7 @@ class Main extends React.Component {
                             <div className="section">
                                 <Switch>
                                     <Route path="/bugs"><BugsPage /></Route>
+                                    <Route path="/fishes"><FishesPage /></Route>
                                     <Route exact path="/"><HomePage /></Route>
                                 </Switch>
                             </div>

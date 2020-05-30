@@ -31,7 +31,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <BrowserRouter>
+                <BrowserRouter basename={process.env.PUBLIC_URL}>
                     <Header
                         isGoogleLogin={this.state.isGoogleLogin}
                         onLogin={(response) => this.responseGoogle(response)}

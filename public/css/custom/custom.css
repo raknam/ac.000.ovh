@@ -11,6 +11,7 @@ PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER 
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
 @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .brand-sidebar {
     background: inherit;
@@ -53,4 +54,37 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 .userMenu li svg {
     width: 14px !important;
+}
+
+.bugs, .fishes {
+    font-family: Roboto, sans-serif;
+    font-size: 11px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mosaique {
+    width: 160px;
+    padding: 5px;
+}
+
+.mosaique .fond {
+    background: url('https://www.animalcrossing-online.com/img/fond.png');
+    text-align: center;
+}
+
+.mosaique .fond img {
+    height: 56px;
+    margin-top: 4px;
+}
+
+.mosaique .name2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.bugs svg, .fishes svg {
+    width: 12px !important;
 }

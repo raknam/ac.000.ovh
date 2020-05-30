@@ -4,29 +4,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faMapMarkerAlt, faCoins } from "@fortawesome/free-solid-svg-icons";
 
-class BugsPage extends React.Component {
+class FishesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoaded: false,
-            bugs: []
+            fishes: []
         }
     };
 
     componentDidMount() {
-        fetch(ACNHAPI_BASEURL + "/bugs")
+        fetch(ACNHAPI_BASEURL + "/fish")
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        bugs: result,
+                        fishes: result,
                     })
                 },
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        bugs: [],
+                        fishes: [],
                         error
                     });
                 }
@@ -37,8 +37,8 @@ class BugsPage extends React.Component {
         return (
             <div className="row">
                 <div className="card">
-                    <div className="card-content row bugs">
-                    {this.state.bugs.map((bug) => <BugCard bug={bug}/>)}
+                    <div className="card-content row fishes">
+                    {this.state.fishes.map((fish) => <FishCard fish={fish}/>)}
                     </div>
                 </div>
             </div>
@@ -46,41 +46,41 @@ class BugsPage extends React.Component {
     }
 }
 
-class BugCard extends React.Component {
+class FishCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            bug: props.bug
+            fish: props.fish
         }
     }
 
     render() {
         return (
-            <div key={this.state.bug.id} className="mosaique">
+            <div key={this.state.fish.id} className="mosaique">
                 <div className="fond">
-                    <img src={this.state.bug.icon_uri}/>
+                    <img src={this.state.fish.icon_uri}/>
                 </div>
                 <h4 className="name2">
-                    {this.state.bug.name["name-EUfr"].toLowerCase().ucfirst()}
+                    {this.state.fish.name["name-EUfr"].toLowerCase().ucfirst()}
                 </h4>
                 <p className="period">
-                    <FontAwesomeIcon icon={faCalendarAlt}/> {this.state.bug.availability["month-northern"]}
+                    <FontAwesomeIcon icon={faCalendarAlt}/> {this.state.fish.availability["month-northern"]}
                 </p>
                 <p className="time">
-                    <FontAwesomeIcon icon={faClock}/> {this.state.bug.availability.time}
+                    <FontAwesomeIcon icon={faClock}/> {this.state.fish.availability.time}
                 </p>
                 <p className="location">
-                    <FontAwesomeIcon icon={faMapMarkerAlt}/> {this.state.bug.availability.location}
+                    <FontAwesomeIcon icon={faMapMarkerAlt}/> {this.state.fish.availability.location}
                 </p>
                 <p className="price">
-                    <FontAwesomeIcon icon={faCoins}/> {this.state.bug.price}
+                    <FontAwesomeIcon icon={faCoins}/> {this.state.fish.price}
                 </p>
                 <p className="rarity">
-                    {this.state.bug.availability.rarity}
+                    {this.state.fish.availability.rarity}
                 </p>
             </div>
         );
     }
 }
 
-export default BugsPage;
+export default FishesPage;
