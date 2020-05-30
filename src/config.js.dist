@@ -1,0 +1,12 @@
+function Config() {
+    return {
+        Google: {
+            ClientID: "",
+        },
+        Server: {
+         Api: "https://localhost/api.php", //https is mandatory
+        }
+    }
+}
+
+export default Config;

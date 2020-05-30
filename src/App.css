@@ -1,0 +1,22 @@
+.google-login-avatar {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    vertical-align: bottom;
+}
+
+.navbar .profile-button span.avatar-status {
+    padding-bottom: 3px;
+}
+
+.avatar-status img {
+    width: 28px;
+    height: 28px;
+    background-color: white;
+}
+
+.GoogleSignIn span {
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
