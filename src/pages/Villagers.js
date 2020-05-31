@@ -1,5 +1,7 @@
 import React from "react";
 import { ACNHAPI_BASEURL } from "../modules/Main";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faGift, faPaw, faVenusMars} from "@fortawesome/free-solid-svg-icons";
 
 const defaultState = {
     isLoaded: false,
@@ -40,6 +42,15 @@ const VillagerCard = (props) => (
             <img src={props.villager.icon_uri} alt={props.villager.name["name-EUfr"].toLowerCase().ucfirst()}/>
         </div>
         <h4 className="name2"> {props.villager.name["name-EUfr"].toLowerCase().ucfirst()} </h4>
+        <p className="birthday">
+            <FontAwesomeIcon icon={faGift}/> {props.villager["birthday-string"]}
+        </p>
+        <p className="species">
+            <FontAwesomeIcon icon={faPaw}/> {props.villager.species}
+        </p>
+        <p className="gender">
+            <FontAwesomeIcon icon={faVenusMars}/> {props.villager.gender}
+        </p>
     </div>
 );
 
