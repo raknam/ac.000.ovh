@@ -1,7 +1,7 @@
 import React from "react";
 import MenuItem from "./MenuItem";
 
-import { faFish, faBug, faSkull, faUsers, faHome } from '@fortawesome/free-solid-svg-icons'
+import {faFish, faBug, faSkull, faUsers, faHome, faPalette} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 
 function Menu(props) {
@@ -22,6 +22,7 @@ function Menu(props) {
 
                 <MenuItem name="Home" fa_icon={faHome} link="/"/>
                 <li>&nbsp;</li>
+                <MenuItem name="Art" fa_icon={faPalette} link="/art"/>
                 <MenuItem name="Bugs" fa_icon={faBug} link="/bugs"/>
                 <MenuItem name="Fishes" fa_icon={faFish} link="/fishes" />
                 <MenuItem name="Fossils" fa_icon={faSkull} link="/fossils" />

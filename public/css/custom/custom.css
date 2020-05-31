@@ -12,6 +12,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Icons&display=swap');
 
 .brand-sidebar {
     background: inherit;
@@ -44,6 +45,10 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     font-family: Muli, sans-serif;
 }
 
+.userMenu {
+    width: 200px;
+}
+
 .userMenu li {
     padding: 14px 24px;
     font-size: 16px;
@@ -56,7 +61,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     width: 14px !important;
 }
 
-.bugs, .fishes {
+.bugs, .fishes, .fossils, .villagers, .arts {
     font-family: Roboto, sans-serif;
     font-size: 11px;
     display: flex;
@@ -70,7 +75,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 .mosaique .fond {
-    background: url('https://www.animalcrossing-online.com/img/fond.png');
+    background: url('../../images/card_background.png');
     text-align: center;
 }
 
@@ -85,6 +90,6 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     text-align: center;
 }
 
-.bugs svg, .fishes svg {
+.bugs svg, .fishes svg, .fossils svg, .villagers svg, .arts svg {
     width: 12px !important;
 }

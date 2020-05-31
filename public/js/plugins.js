@@ -95,22 +95,8 @@ $(function () {
       full_width: true
    });
 
-   // Common, Translation & Horizontal Dropdown
-   $(".dropdown-trigger").dropdown();
-
-   // Common, Translation
-   $(".dropdown-button").dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrainWidth: false,
-      hover: true,
-      gutter: 0,
-      coverTrigger: true,
-      alignment: "left"
-   });
-
    // Notification, Profile, Translation, Settings Dropdown & Horizontal Dropdown
-   $(".notification-button, .profile-button, .translation-button, .dropdown-settings").dropdown({
+   $(".notification-button, .profile-button, /*.translation-button,*/ .dropdown-settings").dropdown({
       inDuration: 300,
       outDuration: 225,
       constrainWidth: false,

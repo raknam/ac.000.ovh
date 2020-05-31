@@ -4,13 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faMapMarkerAlt, faCoins } from "@fortawesome/free-solid-svg-icons";
 
+const defaultState = {
+    isLoaded: false,
+    bugs: []
+};
+
 class BugsPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isLoaded: false,
-            bugs: []
-        }
+        this.state = defaultState;
     };
 
     componentDidMount() {
@@ -18,7 +20,7 @@ class BugsPage extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => { this.setState({ isLoaded: true, bugs: result }) },
-                (error) => { this.setState({ isLoaded: true, bugs: [], error }); }
+                (error) => { this.setState(Object.assign({ error }, defaultState)); }
             )
     }
 
@@ -27,7 +29,7 @@ class BugsPage extends React.Component {
             <div className="row">
                 <div className="card">
                     <div className="card-content row bugs">
-                    {this.state.bugs.map((bug) => <BugCard bug={bug}/>)}
+                    {this.state.bugs.map((bug) => <BugCard bug={bug} key={bug.id}/>)}
                     </div>
                 </div>
             </div>
@@ -35,41 +37,26 @@ class BugsPage extends React.Component {
     }
 }
 
-class BugCard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            bug: props.bug
-        }
-    }
-
-    render() {
-        return (
-            <div key={this.state.bug.id} className="mosaique">
-                <div className="fond">
-                    <img src={this.state.bug.icon_uri}/>
-                </div>
-                <h4 className="name2">
-                    {this.state.bug.name["name-EUfr"].toLowerCase().ucfirst()}
-                </h4>
-                <p className="period">
-                    <FontAwesomeIcon icon={faCalendarAlt}/> {this.state.bug.availability["month-northern"]}
-                </p>
-                <p className="time">
-                    <FontAwesomeIcon icon={faClock}/> {this.state.bug.availability.time}
-                </p>
-                <p className="location">
-                    <FontAwesomeIcon icon={faMapMarkerAlt}/> {this.state.bug.availability.location}
-                </p>
-                <p className="price">
-                    <FontAwesomeIcon icon={faCoins}/> {this.state.bug.price}
-                </p>
-                <p className="rarity">
-                    {this.state.bug.availability.rarity}
-                </p>
-            </div>
-        );
-    }
-}
+const BugCard = (props) => (
+    <div className="mosaique">
+        <div className="fond">
+            <img src={props.bug.icon_uri} alt="Bug"/>
+        </div>
+        <h4 className="name2"> {props.bug.name["name-EUfr"].toLowerCase().ucfirst()} </h4>
+        <p className="period">
+            <FontAwesomeIcon icon={faCalendarAlt}/> {props.bug.availability["month-northern"]}
+        </p>
+        <p className="time">
+            <FontAwesomeIcon icon={faClock}/> {props.bug.availability.time}
+        </p>
+        <p className="location">
+            <FontAwesomeIcon icon={faMapMarkerAlt}/> {props.bug.availability.location}
+        </p>
+        <p className="price">
+            <FontAwesomeIcon icon={faCoins}/> {props.bug.price}
+        </p>
+        <p className="rarity"> {props.bug.availability.rarity} </p>
+    </div>
+);
 
 export default BugsPage;

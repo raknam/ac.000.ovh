@@ -19,14 +19,14 @@ function Header(props) {
                         </div>
                         <ul className="navbar-list right">
                             <li className="dropdown-language">
-                                <a className="waves-effect waves-block waves-light translation-button" href="!#"
+                                <a className="waves-effect waves-block waves-light translation-button" href="#!"
                                 data-target="translation-dropdown"><span className="flag-icon flag-icon-fr"></span></a>
                             </li>
                             <li className="hide-on-large-only search-input-wrapper"><a
                                 className="waves-effect waves-block waves-light search-button"
-                                href="!#"><i className="material-icons">search</i></a></li>
+                                href="#!"><i className="material-icons">search</i></a></li>
                             <li>
-                                <a className="waves-effect waves-block waves-light profile-button" data-target="profile-dropdown" href="!#">
+                                <a href="#!" className="waves-effect waves-block waves-light profile-button" data-target="profile_dropdown">
                                     <span className="avatar-status">
                                         <img src={props.avatar} alt="avatar"/>
                                     </span>
@@ -34,6 +34,7 @@ function Header(props) {
                             </li>
                         </ul>
 
+                        {/*
                         <ul className="dropdown-content" id="translation-dropdown">
                             <li className="dropdown-item"><a className="grey-text text-darken-1" href="!#"
                                                              data-language="en"><i
@@ -42,8 +43,9 @@ function Header(props) {
                                                              data-language="fr"><i
                                 className="flag-icon flag-icon-fr"></i> French</a></li>
                         </ul>
+                        */}
 
-                        <ul className="userMenu dropdown-content" id="profile-dropdown">
+                        <ul className="userMenu dropdown-content" id="profile_dropdown">
                             <LoggedInMenu isSignedIn={props.isSignedIn} isFirstLogin={props.isFirstLogin} data={props.data}/>
                             <Connect
                                 firebase={props.firebase}
