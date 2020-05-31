@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMap, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faCompass, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import {useGoogleLogin, useGoogleLogout} from "react-google-login";
-import Config from "../config";
 
 function Header(props) {
     return (
@@ -28,7 +26,7 @@ function Header(props) {
                                 className="waves-effect waves-block waves-light search-button"
                                 href="!#"><i className="material-icons">search</i></a></li>
                             <li>
-                                <a className="waves-effect waves-block waves-light profile-button" href="#" data-target="profile-dropdown">
+                                <a className="waves-effect waves-block waves-light profile-button" data-target="profile-dropdown" href="!#">
                                     <span className="avatar-status">
                                         <img src={props.avatar} alt="avatar"/>
                                     </span>
@@ -46,11 +44,10 @@ function Header(props) {
                         </ul>
 
                         <ul className="userMenu dropdown-content" id="profile-dropdown">
-                            <LoggedInMenu isLoggedIn={props.isGoogleLogin} user={props.user}/>
+                            <LoggedInMenu isSignedIn={props.isSignedIn} isFirstLogin={props.isFirstLogin} data={props.data}/>
                             <Connect
-                                isLoggedIn={props.isGoogleLogin}
-                                onLogin={props.onLogin}
-                                onLogout={props.onLogout}/>
+                                firebase={props.firebase}
+                                isSignedIn={props.isSignedIn}/>
                         </ul>
                     </div>
                 </nav>
@@ -60,63 +57,39 @@ function Header(props) {
 }
 
 function LoggedInMenu(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
+    if (props.isSignedIn && !props.isFirstLogin) {
         return (
             <Fragment>
                 <li>
-                    <FontAwesomeIcon icon={faUser} className="mr-10"/> {props.user.island.player.ucfirst()}
+                    <FontAwesomeIcon icon={faUser} className="mr-10"/> {props.data.island.player.ucfirst()}
                 </li>
                 <li>
-                    <FontAwesomeIcon icon={faMap} className="mr-10"/> {props.user.island.name}
+                    <FontAwesomeIcon icon={faMap} className="mr-10"/> {props.data.island.name}
                 </li>
                 <li>
-                    <FontAwesomeIcon icon={faCompass} className="mr-10"/> {props.user.island.hemisphere.ucfirst()}
+                    <FontAwesomeIcon icon={faCompass} className="mr-10"/> {props.data.island.hemisphere.ucfirst()}
                 </li>
             </Fragment>
         );
     }
-    return (null);
+    return null;
 }
 
 function Connect(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
-        return <GoogleSignOut onLogout={props.onLogout}/>;
+    if (props.isSignedIn) {
+        //Logging out
+        return (
+            <li onClick={() => props.firebase.doSignOut()}>
+                <FontAwesomeIcon icon={faSignOutAlt} className="mr-10"/> Logout
+            </li>
+        );
     }
-    return <GoogleSignIn onLogin={props.onLogin}/>;
-}
-
-function GoogleSignOut(props) {
-    // eslint-disable-next-line
-    const { signOut, loaded } = useGoogleLogout({
-        clientId: Config().Google.ClientID,
-        onLogoutSuccess: props.onLogout
-    });
-
+    //Logging in
     return (
-        // eslint-disable-next-line
-        <li onClick={() => signOut()}>
-            <FontAwesomeIcon icon={faSignOutAlt} className="mr-10"/> Logout
-        </li>
-    );
-}
-
-function GoogleSignIn(props) {
-    // eslint-disable-next-line
-    const { signIn, loaded } = useGoogleLogin({
-        clientId: Config().Google.ClientID,
-        onSuccess: props.onLogin,
-        onFailure: props.onLogin,
-        isSignedIn: true
-    });
-
-    return (
-        // eslint-disable-next-line
-        <li onClick={() => signIn()}>
+        <li onClick={() => props.firebase.doSignInWithGoogle()}>
             <FontAwesomeIcon icon={faGoogle} className="mr-10"/> Sign in
         </li>
-    )
+    );
 }
 
 export default Header;

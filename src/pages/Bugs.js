@@ -17,19 +17,8 @@ class BugsPage extends React.Component {
         fetch(ACNHAPI_BASEURL + "/bugs")
             .then(res => res.json())
             .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        bugs: result,
-                    })
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        bugs: [],
-                        error
-                    });
-                }
+                (result) => { this.setState({ isLoaded: true, bugs: result }) },
+                (error) => { this.setState({ isLoaded: true, bugs: [], error }); }
             )
     }
 

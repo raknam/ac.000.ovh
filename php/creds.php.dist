@@ -1,4 +1,0 @@
-<?php
-
-define('GOOGLE_CLIENTID', "");
-define('GOOGLE_CLIENTSECRET', "");

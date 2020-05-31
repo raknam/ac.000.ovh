@@ -7,10 +7,6 @@ import FishesPage from "../pages/Fishes";
 export const ACNHAPI_BASEURL="https://acnhapi.com/v1a";
 
 class Main extends React.Component {
-    constructor(props) {
-        super(props);
-    };
-
     render() {
         return (
             <div id="main">

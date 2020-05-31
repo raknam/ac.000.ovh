@@ -1,20 +1,20 @@
 import React from 'react';
-import Config from './config'
 import './App.css';
 import Header from "./modules/Header";
 import Menu from "./modules/Menu";
 import Footer from "./modules/Footer";
 import Main from "./modules/Main";
 import {BrowserRouter} from "react-router-dom";
+import FirstLogin from "./pages/FirstLogin";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isGoogleLogin: false,
-            googleProfile: null,
             user: null,
-            avatar: process.env.PUBLIC_URL + "/images/anonymous.png"
+            data: null,
+            avatar: process.env.PUBLIC_URL + "/images/anonymous.png",
+            firstLogin: false
         };
     }
 
@@ -26,72 +26,60 @@ class App extends React.Component {
                 useScript(process.env.PUBLIC_URL + "/js/plugins.js");
             });
         });
+
+        this.props.firebase.auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                this.props.firebase.getUserData(authUser.uid)
+                    .get()
+                    .then((data) => {
+                        var userData = data.data();
+                        if (userData === undefined) {
+                            this.setState({
+                                user: authUser,
+                                data: null,
+                                avatar: authUser.photoURL,
+                                firstLogin: true
+                            });
+                        } else {
+                            this.setState({
+                                user: authUser,
+                                data: data.data(),
+                                avatar: authUser.photoURL,
+                                firstLogin: false
+                            });
+                        }
+                    });
+            } else {
+                this.setState({
+                    user: null,
+                    data: null,
+                    avatar: process.env.PUBLIC_URL + "/images/anonymous.png",
+                    firstLogin: false
+                })
+            }
+        });
     }
 
     render() {
+        var main = !this.state.firstLogin ? <Main/> : <FirstLogin/>;
+
         return (
             <div className="App">
                 <BrowserRouter basename={process.env.PUBLIC_URL}>
                     <Header
-                        isGoogleLogin={this.state.isGoogleLogin}
-                        onLogin={(response) => this.responseGoogle(response)}
-                        onLogout={(response) => this.googleHasLogout(response)}
+                        isSignedIn={this.state.user}
+                        firebase={this.props.firebase}
                         avatar={this.state.avatar}
                         user={this.state.user}
+                        data={this.state.data}
+                        isFirstLogin={this.state.firstLogin}
                     />
                     <Menu/>
-                    <Main/>
+                    {main}
                     <Footer/>
                 </BrowserRouter>
             </div>
         );
-    }
-
-    responseGoogle(response) {
-        const profile = response.profileObj;
-        //console.log("Google Login Response", response);
-
-        var data = new FormData();
-        data.append('token', response.tokenId);
-
-        this.setState({
-            isGoogleLogin: false,
-            googleProfile: null,
-            user: null,
-            avatar: process.env.PUBLIC_URL + "/images/loader.svg"
-        });
-
-        fetch(Config().Server.Api + "?act=login", { method: "POST", body: data })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isGoogleLogin: true,
-                        googleProfile: profile,
-                        user: result.user,
-                        avatar: profile.imageUrl,
-                    })
-                },
-                (error) => {
-                    this.setState({
-                        isGoogleLogin: false,
-                        googleProfile: null,
-                        user: null,
-                        avatar: process.env.PUBLIC_URL + "/images/anonymous.png",
-                        error,
-                    });
-                }
-            )
-    }
-
-    googleHasLogout(response) {
-        console.log("Google has logout", response);
-        this.setState({
-            isGoogleLogin: false,
-            googleProfile: null,
-            user: null,
-            avatar: process.env.PUBLIC_URL + "/images/anonymous.png"
-        })
     }
 }
 
