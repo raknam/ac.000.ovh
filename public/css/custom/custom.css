@@ -66,12 +66,19 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     font-size: 11px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.catched {
+    top: 8px;
+    right: 0;
+    position: absolute;
 }
 
 .mosaique {
     width: 160px;
     padding: 5px;
+    position: relative;
 }
 
 .mosaique .fond {
@@ -88,8 +95,40 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     font-size: 13px;
     font-weight: 700;
     text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 5px 0;
+    height: 27px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gender {
+    font-weight: bold;
 }
 
 .bugs svg, .fishes svg, .fossils svg, .villagers svg, .arts svg {
     width: 12px !important;
+    margin-right: 3px;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #eacec6 !important;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #5d4037 !important;
+}
+
+.switch label input[type=checkbox]:checked:not(:disabled)~.lever:active::before {
+    background-color: #5d403726 !important;
+}
+
+.switch label .lever:before {
+    background-color: #5d403726 !important;
+}
+
+span.badge.new {
+    font-size: 8px;
 }

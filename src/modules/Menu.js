@@ -20,13 +20,14 @@ function Menu(props) {
             <ul className="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow"
                 id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
 
+                <li>&nbsp;</li>
                 <MenuItem name="Home" fa_icon={faHome} link="/"/>
                 <li>&nbsp;</li>
-                <MenuItem name="Art" fa_icon={faPalette} link="/art"/>
-                <MenuItem name="Bugs" fa_icon={faBug} link="/bugs"/>
-                <MenuItem name="Fishes" fa_icon={faFish} link="/fishes" />
-                <MenuItem name="Fossils" fa_icon={faSkull} link="/fossils" />
-                <MenuItem name="Villagers" fa_icon={faUsers} link="/villagers" />
+                <MenuItem name="Art" fa_icon={faPalette} link={props.routing.art}/>
+                <MenuItem name="Fossiles" fa_icon={faSkull} link={props.routing.fossils}/>
+                <MenuItem name="Insectes" fa_icon={faBug} link={props.routing.insects}/>
+                <MenuItem name="Poissons" fa_icon={faFish} link={props.routing.fishes}/>
+                <MenuItem name="Villageois" fa_icon={faUsers} link={props.routing.villagers}/>
             </ul>
 
             <div className="navigation-background"></div>

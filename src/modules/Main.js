@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom"
 import HomePage from "../pages/Home";
-import BugsPage from "../pages/Bugs";
+import InsectsPage from "../pages/Insects";
 import FishesPage from "../pages/Fishes";
 import FossilsPage from "../pages/Fossils";
 import VillagersPage from "../pages/Villagers";
@@ -18,11 +18,11 @@ class Main extends React.Component {
                         <div className="container">
                             <div className="section">
                                 <Switch>
-                                    <Route path="/art"><ArtPage /></Route>
-                                    <Route path="/bugs"><BugsPage /></Route>
-                                    <Route path="/fishes"><FishesPage /></Route>
-                                    <Route path="/fossils"><FossilsPage /></Route>
-                                    <Route path="/villagers"><VillagersPage /></Route>
+                                    <Route path={this.props.routing.art}><ArtPage language={this.props.language} /></Route>
+                                    <Route path={this.props.routing.insects}><InsectsPage language={this.props.language} /></Route>
+                                    <Route path={this.props.routing.fishes}><FishesPage language={this.props.language} /></Route>
+                                    <Route path={this.props.routing.fossils}><FossilsPage language={this.props.language} /></Route>
+                                    <Route path={this.props.routing.villagers}><VillagersPage language={this.props.language} /></Route>
                                     <Route exact path="/"><HomePage /></Route>
                                 </Switch>
                             </div>

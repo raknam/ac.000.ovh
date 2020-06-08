@@ -2,6 +2,7 @@ import React from "react";
 import { ACNHAPI_BASEURL } from "../modules/Main";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
+import Card from "../modules/Card"
 
 const defaultState = {
     isLoaded: false,
@@ -28,24 +29,21 @@ class FossilsPage extends React.Component {
             <div className="row">
                 <div className="card">
                     <div className="card-content row fossils">
-                    {this.state.fossils.map((fossil) => <FossilCard fossil={fossil} key={fossil['file-name']}/>)}
+                    {this.state.fossils.map((fossil) =>
+                        <Card class="Fossil"
+                              icon={fossil.image_uri}
+                              name={fossil.name["name-EUfr"].toLowerCase().ucfirst()}
+                              key={fossil['file-name']}>
+                            <p className="price">
+                                <FontAwesomeIcon icon={faCoins}/> {fossil.price}
+                            </p>
+                        </Card>
+                    )}
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-const FossilCard = (props) => (
-    <div className="mosaique">
-        <div className="fond">
-            <img src={props.fossil.image_uri} alt="Fossil"/>
-        </div>
-        <h4 className="name2"> {props.fossil.name["name-EUfr"].toLowerCase().ucfirst()} </h4>
-        <p className="price">
-            <FontAwesomeIcon icon={faCoins}/> {props.fossil.price}
-        </p>
-    </div>
-);
 
 export default FossilsPage;

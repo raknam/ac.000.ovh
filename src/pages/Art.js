@@ -2,6 +2,7 @@ import React from "react";
 import { ACNHAPI_BASEURL } from "../modules/Main";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCoins} from "@fortawesome/free-solid-svg-icons";
+import Card from "../modules/Card";
 
 const defaultState = {
     isLoaded: false,
@@ -28,24 +29,21 @@ class ArtPage extends React.Component {
             <div className="row">
                 <div className="card">
                     <div className="card-content row arts">
-                    {this.state.arts.map((art) => <ArtCard art={art} key={art.id}/>)}
+                    {this.state.arts.map((art) =>
+                        <Card class="Art"
+                              icon={art.image_uri}
+                              name={art.name["name-EUfr"].toLowerCase().ucfirst()}
+                              key={art.id}>
+                            <p className="price">
+                                <FontAwesomeIcon icon={faCoins}/> {art['sell-price']}
+                            </p>
+                        </Card>
+                    )}
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-const ArtCard = (props) => (
-    <div className="mosaique">
-        <div className="fond">
-            <img src={props.art.image_uri} alt=""/>
-        </div>
-        <h4 className="name2"> {props.art.name["name-EUfr"].toLowerCase().ucfirst()} </h4>
-        <p className="price">
-            <FontAwesomeIcon icon={faCoins}/> {props.art['sell-price']}
-        </p>
-    </div>
-);
 
 export default ArtPage;
