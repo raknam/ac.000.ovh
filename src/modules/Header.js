@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMap, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import {faCoins, faMap, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import { faCompass, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
@@ -20,13 +20,17 @@ function Header(props) {
                         </div>
                         */}
                         <ul className="navbar-list right">
+                            <li>
+                                <a className="waves-effect waves-block waves-light coins" href="#!">
+                                    <i className="material-icons">shopping_cart</i>
+                                    <span>150 000</span>&nbsp;
+                                    <FontAwesomeIcon icon={faCoins}/>
+                                </a>
+                            </li>
                             <li className="dropdown-language">
                                 <a className="waves-effect waves-block waves-light translation-button" href="#!"
                                 data-target="translation-dropdown"><span className="flag-icon flag-icon-fr"></span></a>
                             </li>
-                            <li className="hide-on-large-only search-input-wrapper"><a
-                                className="waves-effect waves-block waves-light search-button"
-                                href="#!"><i className="material-icons">search</i></a></li>
                             <li>
                                 <a href="#!" className="waves-effect waves-block waves-light profile-button" data-target="profile_dropdown">
                                     <span className="avatar-status">

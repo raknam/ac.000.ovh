@@ -132,3 +132,41 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 span.badge.new {
     font-size: 8px;
 }
+
+a.addCart {
+    font-weight: 700;
+    line-height: 30px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 3px;
+    background: #ede7f6;
+    color: #8e24aa;
+    position: absolute;
+    top: 36px;
+    right: 8px;
+    border: 1px solid #8e24aa;
+    padding-top: 4px;
+}
+a.addCart>i.material-icons {
+    font-size: 20px !important;
+}
+
+a.addCart:hover {
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,.14), 0 1px 7px 0 rgba(0,0,0,.12), 0 3px 1px -1px rgba(0,0,0,.2);
+}
+
+a.addCart:active {
+    box-shadow: none;
+}
+
+.navbar-list a {
+    height: 64px;
+}
+
+.navbar-list a.coins {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+}

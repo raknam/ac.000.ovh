@@ -7,7 +7,6 @@ import Main from "./modules/Main";
 import {BrowserRouter} from "react-router-dom";
 import FirstLogin from "./pages/FirstLogin";
 import {Helmet} from "react-helmet";
-import VillagersPage from "./pages/Villagers";
 
 const Routing = {
     art: "/art",
@@ -23,6 +22,7 @@ const defaultState = {
     avatar: process.env.PUBLIC_URL + "/images/anonymous.png",
     firstLogin: false,
     language: "EUfr",
+    cart: []
 };
 
 class App extends React.Component {
@@ -68,7 +68,9 @@ class App extends React.Component {
     }
 
     render() {
-        var main = !this.state.firstLogin ? <Main routing={Routing} language={this.state.language}/> : <FirstLogin/>;
+        var main = !this.state.firstLogin ? (
+            <Main routing={Routing} language={this.state.language} cart={this.state.cart}/>
+        ) : <FirstLogin/>;
 
         return (
             <div className="App">
@@ -85,6 +87,7 @@ class App extends React.Component {
                         data={this.state.data}
                         isFirstLogin={this.state.firstLogin}
                         language={this.state.language}
+                        cart={this.state.cart}
                     />
                     <Menu routing={Routing}/>
                     {main}

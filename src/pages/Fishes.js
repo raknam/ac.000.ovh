@@ -80,6 +80,7 @@ class FishesPage extends React.Component {
                     <div className="card-content row fishes">
                     {this.state.fishes.map((fish) =>
                         <Card class="Fish"
+                              enableCart={true}
                               icon={fish.icon_uri}
                               name={fish.name["name-"+this.state.language].toLowerCase().ucfirst()}
                               key={fish.id}>
